@@ -1,0 +1,31 @@
+name: Gradle Dependency Graph
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  push:
+    branches: main
+
+permissions:
+  contents: read
+
+jobs:
+  gradle-action-detection:
+    if: ${{ github.repository_owner == 'ihub-pub' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Setup Gradle to generate and submit dependency graphs
+        uses: gradle/gradle-build-action@982da8e78c05368c70dac0351bb82647a9e9a5d2 # v2.11.1
+        with:
+          dependency-graph: generate-and-submit
+          arguments: dependencies

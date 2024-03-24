@@ -13,6 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id("pub.ihub.plugin.ihub-settings") version "1.6.0"
+description = "IHub Process Core"
+
+dependencies {
+    // 用于定义Java源码
+    api(libs.javapoet)
+    testImplementation(libs.compile.testing)
+    testImplementation("org.mockito:mockito-core")
+}
+dependencies {
+    implementation(project(":ihub-agent-core"))
+    implementation("jakarta.persistence:jakarta.persistence-api")
 }

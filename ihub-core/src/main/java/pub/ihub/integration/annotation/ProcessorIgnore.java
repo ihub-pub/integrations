@@ -13,6 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-    id("pub.ihub.plugin.ihub-settings") version "1.6.0"
+package pub.ihub.integration.annotation;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
+/**
+ * 处理器忽略处理注解
+ *
+ * @author liheng
+ */
+@Retention(SOURCE)
+@Target(TYPE)
+public @interface ProcessorIgnore {
+
 }
