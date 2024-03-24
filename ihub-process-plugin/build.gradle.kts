@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 plugins {
-    alias(ihub.plugins.shadow)
     alias(ihub.plugins.publish)
 }
 
