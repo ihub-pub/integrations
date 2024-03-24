@@ -34,7 +34,6 @@ dependencies {
 }
 
 dependencies {
-    implementation(project(":ihub-agent-core"))
     implementation("org.jmolecules.integrations:jmolecules-bytebuddy")
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("io.swagger.core.v3:swagger-annotations-jakarta:2.2.19")
