@@ -22,6 +22,6 @@ dependencies {
     testImplementation("org.mockito:mockito-core")
 }
 dependencies {
-    implementation(project(":ihub-agent-core"))
+//    implementation(project(":ihub-agent-core"))
     implementation("jakarta.persistence:jakarta.persistence-api")
 }
