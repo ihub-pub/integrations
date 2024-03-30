@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-description = "IHub Process Core"
+description = "IHub字节码增强核心组件"
 
 dependencies {
-    // 用于定义Java源码
-    api(libs.javapoet)
-    testImplementation(libs.compile.testing)
+    implementation("net.bytebuddy:byte-buddy")
+    implementation("jakarta.persistence:jakarta.persistence-api")
+    implementation("cn.hutool:hutool-all")
 }
