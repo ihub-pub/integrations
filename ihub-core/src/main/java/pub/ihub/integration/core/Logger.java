@@ -15,6 +15,8 @@
  */
 package pub.ihub.integration.core;
 
+import lombok.NoArgsConstructor;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,6 +25,7 @@ import java.util.Date;
  *
  * @author liheng
  */
+@NoArgsConstructor
 public class Logger {
 
 	public static Boolean ENABLE_DEBUG = Boolean.FALSE;
