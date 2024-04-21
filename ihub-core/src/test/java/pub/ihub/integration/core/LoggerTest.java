@@ -18,7 +18,8 @@ package pub.ihub.integration.core;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import pub.ihub.integration.core.Logger.Level;
 
 /**
  * @author henry
@@ -26,6 +27,27 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 @DisplayName("日志测试")
 class LoggerTest {
+
+	@ParameterizedTest
+	@EnumSource(Level.class)
+	void level(Level level) {
+		Logger.setLevel(level);
+		Logger.trace("log trace {}", "test");
+		Logger.debug("log debug {}", "test");
+		Logger.info("log info {}", "test");
+		Logger.warn("log warn {}", "test");
+		Logger.error("log error {}", "test");
+	}
+
+	@Test
+	void trace() {
+		Logger.trace("log trace {}", "test");
+	}
+
+	@Test
+	void debug() {
+		Logger.debug("log debug {}", "test");
+	}
 
 	@Test
 	void info() {
@@ -45,13 +67,6 @@ class LoggerTest {
 	@Test
 	void errorThrowable() {
 		Logger.error("log error", new RuntimeException("test"));
-	}
-
-	@ParameterizedTest
-	@ValueSource(booleans = {true, false})
-	void debug(Boolean enableDebug) {
-		Logger.ENABLE_DEBUG = enableDebug;
-		Logger.debug("log debug {}", "test");
 	}
 
 }

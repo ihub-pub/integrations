@@ -29,9 +29,6 @@
     <a target="_blank" href="https://javadoc.io/doc/pub.ihub.integration">
         <img alt="Java Doc" src="https://javadoc.io/badge2/pub.ihub.integration/ihub-core/javadoc.svg?color=white&labelColor=8CA1AF&label=Docs&logo=readthedocs&logoColor=white">
     </a>
-    <a target="_blank" href="https://s01.oss.sonatype.org/content/repositories/snapshots/pub/ihub/integration">
-        <img src="https://badge.ihub.pub/maven-metadata/v?color=white&labelColor=E33332&label=Snapshot&logo=Testing+Library&logoColor=white&metadataUrl=https%3A%2F%2Fs01.oss.sonatype.org%2Fcontent%2Frepositories%2Fsnapshots%2Fpub%2Fihub%2Fintegration%2Fihub-bom%2Fmaven-metadata.xml" alt="IHub Snapshot Repository"/>
-    </a>
     <a target="_blank" href="https://mvnrepository.com/artifact/pub.ihub.integration">
         <img src="https://badge.ihub.pub/maven-central/v/pub.ihub.integration/ihub-bom?color=white&labelColor=C71A36&label=Maven&logo=Apache+Maven&logoColor=white" alt="Maven Central"/>
     </a>
