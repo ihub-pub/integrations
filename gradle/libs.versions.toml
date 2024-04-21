@@ -1,13 +1,7 @@
 [versions]
-mapstruct = '1.5.5.Final'
 incap = '1.0.0'
 
 [libraries]
-# mapstruct libs
-mapstruct = { module = 'org.mapstruct:mapstruct', version.ref = 'mapstruct' }
-mapstruct-processor = { module = 'org.mapstruct:mapstruct-processor', version.ref = 'mapstruct' }
-
-# other libs
 auto-service = { module = 'com.google.auto.service:auto-service', version = '1.1.1' }
 compile-testing = { module = 'com.google.testing.compile:compile-testing', version = '0.21.0' }
 incap = { module = 'net.ltgt.gradle.incap:incap', version.ref = 'incap' }
