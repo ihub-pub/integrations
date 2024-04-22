@@ -45,18 +45,45 @@ import static net.bytebuddy.matcher.ElementMatchers.not;
 @RequiredArgsConstructor(access = PRIVATE, staticName = "of")
 public class IHubTypesBuilder {
 
+	/**
+	 * The builder to wrap
+	 */
 	private final Builder<?> builder;
+	/**
+	 * The type being built
+	 */
 	private final TypeDescription type;
 
+	/**
+	 * Creates a new {@link IHubTypesBuilder} for the given {@link Builder} and {@link TypeDescription}.
+	 *
+	 * @param builder The builder to wrap.
+	 * @return A new {@link IHubTypesBuilder}.
+	 */
 	public static IHubTypesBuilder of(Builder<?> builder) {
 		return of(builder, builder.toTypeDescription());
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param annotation     The annotation to add.
+	 * @param annotationDesc A function to configure the annotation.
+	 * @return This builder.
+	 */
 	public final IHubTypesBuilder annotateTypeIfMissing(Class<? extends Annotation> annotation,
 														Function<AnnotationDescription.Builder, AnnotationDescription.Builder> annotationDesc) {
 		return addAnnotationIfMissing(annotation, annotationDesc);
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param annotation        A function to produce the annotation to add.
+	 * @param selector          A function to select the type to add the annotation to.
+	 * @param filterAnnotations Annotations to filter out.
+	 * @return This builder.
+	 */
 	@SafeVarargs
 	public final IHubTypesBuilder annotateMethodWith(AnnotationDescription annotation,
 													 ElementMatcher.Junction<MethodDescription> selector, Class<? extends Annotation>... filterAnnotations) {
@@ -74,6 +101,15 @@ public class IHubTypesBuilder {
 		return IHubTypesBuilder.of(builder.visit(annotationSpec));
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param annotation        The annotation to add.
+	 * @param annotationDesc    A function to configure the annotation.
+	 * @param selector          A function to select the type to add the annotation to.
+	 * @param filterAnnotations Annotations to filter out.
+	 * @return This builder.
+	 */
 	@SafeVarargs
 	public final IHubTypesBuilder annotateFieldWith(Class<? extends Annotation> annotation,
 													Function<AnnotationDescription.Builder, AnnotationDescription.Builder> annotationDesc,
@@ -92,6 +128,14 @@ public class IHubTypesBuilder {
 		return IHubTypesBuilder.of(builder.visit(annotationSpec));
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param annotation        The annotation to add.
+	 * @param selector          A function to select the type to add the annotation to.
+	 * @param filterAnnotations Annotations to filter out.
+	 * @return This builder.
+	 */
 	@SafeVarargs
 	public final IHubTypesBuilder annotateFieldWith(AnnotationDescription annotation,
 													ElementMatcher.Junction<FieldDescription> selector, Class<? extends Annotation>... filterAnnotations) {
@@ -109,15 +153,35 @@ public class IHubTypesBuilder {
 		return IHubTypesBuilder.of(builder.visit(annotationSpec));
 	}
 
+	/**
+	 * Concludes the builder.
+	 *
+	 * @return The builder.
+	 */
 	public Builder<?> conclude() {
 		return builder;
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param annotation     A function to produce the annotation to add.
+	 * @param annotationDesc A function to configure the annotation.
+	 * @return This builder.
+	 */
 	private final IHubTypesBuilder addAnnotationIfMissing(Class<? extends Annotation> annotation,
 														  Function<AnnotationDescription.Builder, AnnotationDescription.Builder> annotationDesc) {
 		return addAnnotationIfMissing(a -> annotation, annotationDesc);
 	}
 
+	/**
+	 * Adds the given annotation to the type if it is not already present.
+	 *
+	 * @param producer       A function to produce the annotation to add.
+	 * @param annotationDesc A function to configure the annotation.
+	 * @param exclusions     Annotations to exclude.
+	 * @return This builder.
+	 */
 	@SafeVarargs
 	private final IHubTypesBuilder addAnnotationIfMissing(Function<TypeDescription, Class<? extends Annotation>> producer,
 														  Function<AnnotationDescription.Builder, AnnotationDescription.Builder> annotationDesc,

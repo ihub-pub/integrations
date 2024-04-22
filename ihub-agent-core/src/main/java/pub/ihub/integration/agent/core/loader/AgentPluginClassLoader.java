@@ -35,13 +35,27 @@ import java.util.jar.JarFile;
  */
 public class AgentPluginClassLoader extends ClassLoader {
 
+	/**
+	 * 默认加载器
+	 */
 	private static AgentPluginClassLoader DEFAULT_LOADER;
-	// TODO: This path should be configurable
-	private static final String pluginFilePath = "/tmp/ihub-agent-plugin.jar";
+	/**
+	 * TODO: This path should be configurable
+	 */
+	private static final String PLUGIN_FILE_PATH = "/tmp/ihub-agent-plugin.jar";
 
+	/**
+	 * 类路径
+	 */
 	private final List<File> classpath;
+	/**
+	 * 所有的 jar
+	 */
 	private final List<Jar> allJars = new LinkedList<>();
 
+	/**
+	 * 初始化默认加载器
+	 */
 	public static void initDefaultLoader() {
 		if (DEFAULT_LOADER == null) {
 			synchronized (AgentPluginClassLoader.class) {
@@ -52,17 +66,29 @@ public class AgentPluginClassLoader extends ClassLoader {
 		}
 	}
 
+	/**
+	 * 构造器
+	 *
+	 * @param parent 父加载器
+	 */
 	public AgentPluginClassLoader(ClassLoader parent) {
 		super(parent);
 		classpath = new LinkedList<>();
-		classpath.add(new File(pluginFilePath));
+		classpath.add(new File(PLUGIN_FILE_PATH));
 	}
 
+	/**
+	 * 查找类
+	 *
+	 * @param name The <a href="#binary-name">binary name</a> of the class
+	 * @return The resulting Class object
+	 * @throws ClassNotFoundException If the class could not be found
+	 */
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException {
 		if (allJars.isEmpty()) {
 			try {
-				File file = new File(pluginFilePath);
+				File file = new File(PLUGIN_FILE_PATH);
 				Jar jar = new Jar(new JarFile(file), file);
 				allJars.add(jar);
 			} catch (IOException e) {
@@ -96,6 +122,9 @@ public class AgentPluginClassLoader extends ClassLoader {
 		throw new ClassNotFoundException("Can't find " + name);
 	}
 
+	/**
+	 * 代表一个 jar
+	 */
 	private record Jar(JarFile jarFile, File sourceFile) {
 	}
 

@@ -15,10 +15,7 @@
  */
 package pub.ihub.integration.core;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,40 +28,90 @@ import static pub.ihub.integration.core.Logger.Level.*;
  *
  * @author liheng
  */
-@NoArgsConstructor
-public class Logger {
+public final class Logger {
 
-	public static Boolean ENABLE_DEBUG = Boolean.FALSE;
+	/**
+	 * 日志级别
+	 */
 	private static Level LEVEL = INFO;
 
+	/**
+	 * 设置日志级别
+	 *
+	 * @param level 日志级别
+	 */
 	public static void setLevel(Level level) {
 		LEVEL = level;
 	}
 
+	/**
+	 * trace
+	 *
+	 * @param format 格式
+	 * @param args   参数
+	 */
 	public static void trace(String format, Object... args) {
 		logMessage(TRACE, Level::isTraceEnabled, format, args);
 	}
 
+	/**
+	 * debug
+	 *
+	 * @param format 格式
+	 * @param args   参数
+	 */
 	public static void debug(String format, Object... args) {
 		logMessage(DEBUG, Level::isDebugEnabled, format, args);
 	}
 
+	/**
+	 * info
+	 *
+	 * @param format 格式
+	 * @param args   参数
+	 */
 	public static void info(String format, Object... args) {
 		logMessage(INFO, Level::isInfoEnabled, format, args);
 	}
 
+	/**
+	 * warn
+	 *
+	 * @param format 格式
+	 * @param args   参数
+	 */
 	public static void warn(String format, Object... args) {
 		logMessage(WARN, Level::isWarnEnabled, format, args);
 	}
 
+	/**
+	 * error
+	 *
+	 * @param format 格式
+	 * @param args   参数
+	 */
 	public static void error(String format, Object... args) {
 		logMessage(ERROR, Level::isErrorEnabled, format, args);
 	}
 
+	/**
+	 * error
+	 *
+	 * @param msg       消息
+	 * @param throwable 异常
+	 */
 	public static void error(String msg, Throwable throwable) {
 		logMessage(ERROR, Level::isErrorEnabled, msg + " error: [%s]", throwable.getMessage());
 	}
 
+	/**
+	 * 记录日志
+	 *
+	 * @param level      日志级别
+	 * @param checkLevel 检查级别
+	 * @param format     格式
+	 * @param args       参数
+	 */
 	private static void logMessage(Level level, Predicate<Level> checkLevel, String format, Object... args) {
 		if (!checkLevel.test(LEVEL)) {
 			return;
@@ -84,8 +131,6 @@ public class Logger {
 	 * 日志级别
 	 */
 	@RequiredArgsConstructor
-	@ToString(exclude = "levelInt")
-	@Getter
 	public enum Level {
 
 		/**

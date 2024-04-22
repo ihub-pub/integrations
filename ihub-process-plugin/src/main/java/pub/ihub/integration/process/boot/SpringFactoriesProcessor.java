@@ -17,7 +17,6 @@ package pub.ihub.integration.process.boot;
 
 import cn.hutool.core.io.file.PathUtil;
 import com.google.auto.service.AutoService;
-import lombok.Getter;
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessor;
 import net.ltgt.gradle.incap.IncrementalAnnotationProcessorType;
 import pub.ihub.integration.process.core.BaseJavapoetProcessor;
@@ -83,7 +82,6 @@ public class SpringFactoriesProcessor extends BaseJavapoetProcessor {
 		writeResource(SOURCE_OUTPUT, FACTORIES_RESOURCE, lines);
 	}
 
-	@Getter
 	private enum SpringFactoriesAnnotation {
 
 		/**

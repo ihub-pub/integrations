@@ -30,10 +30,27 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class EnhancerInstanceLoader {
 
+	/**
+	 * 实例缓存
+	 */
 	private static final ConcurrentHashMap<String, Object> INSTANCE_CACHE = new ConcurrentHashMap<>();
+	/**
+	 * 实例加载锁
+	 */
 	private static final ReentrantLock INSTANCE_LOAD_LOCK = new ReentrantLock();
+	/**
+	 * 扩展插件类加载器
+	 */
 	private static final Map<ClassLoader, ClassLoader> EXTEND_PLUGIN_CLASSLOADERS = new HashMap<>();
 
+	/**
+	 * 加载实例
+	 *
+	 * @param className         类名
+	 * @param targetClassLoader 目标类加载器
+	 * @param <T>               实例类型
+	 * @return 实例
+	 */
 	@SneakyThrows
 	public static <T> T load(String className, ClassLoader targetClassLoader) {
 		if (targetClassLoader == null) {
