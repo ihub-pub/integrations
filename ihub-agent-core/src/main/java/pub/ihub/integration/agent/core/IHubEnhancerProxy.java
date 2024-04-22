@@ -29,8 +29,16 @@ import java.util.concurrent.Callable;
  */
 public class IHubEnhancerProxy {
 
+	/**
+	 * 切面增强类
+	 */
 	public IAspectEnhancer enhancer;
 
+	/**
+	 * 设置切面增强类
+	 *
+	 * @param enhancer 切面增强类
+	 */
 	@IgnoreForBinding
 	public void setEnhancer(IAspectEnhancer enhancer) {
 		this.enhancer = enhancer;

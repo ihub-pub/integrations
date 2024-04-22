@@ -29,6 +29,9 @@ import java.util.Arrays;
  */
 public interface IHubPlugin extends Plugin {
 
+	/**
+	 * Cglib 代理类分隔符
+	 */
 	String CGLIB_CLASS_SEPARATOR = "$$";
 
 	/**

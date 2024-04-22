@@ -27,6 +27,11 @@ import net.bytebuddy.dynamic.scaffold.TypeValidation;
  */
 public final class IHubAgentBuilder {
 
+	/**
+	 * 构建代理
+	 *
+	 * @return 代理构建器
+	 */
 	public static AgentBuilder build() {
 		final ByteBuddy byteBuddy = new ByteBuddy().with(TypeValidation.of(false));
 		return new AgentBuilder.Default(byteBuddy);

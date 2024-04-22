@@ -39,11 +39,18 @@ subprojects {
             "api"(project(":ihub-core"))
         }
     }
+
+    // TODO 插件配置doc编码
+    tasks.withType(Javadoc::class.java) {
+        options.encoding = "UTF-8"
+    }
 }
 
 iHubGitHooks {
-    hooks.set(mapOf(
-        "pre-commit" to "./gradlew build",
-        "commit-msg" to "./gradlew commitCheck"
-    ))
+    hooks.set(
+        mapOf(
+            "pre-commit" to "./gradlew build",
+            "commit-msg" to "./gradlew commitCheck"
+        )
+    )
 }

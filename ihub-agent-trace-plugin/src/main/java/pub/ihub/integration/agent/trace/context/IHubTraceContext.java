@@ -37,9 +37,20 @@ import java.util.List;
  */
 public class IHubTraceContext {
 
+	/**
+	 * 跟踪器实例
+	 */
 	private static Tracer TracerInst;
+	/**
+	 * 跟踪实例
+	 */
 	private static OpenTelemetry TelemetryInst;
 
+	/**
+	 * 初始化跟踪上下文
+	 *
+	 * @param spanExporters 导出器列表
+	 */
 	public static void initTraceContext(List<SpanExporter> spanExporters) {
 		Logger.info("The IHub core context is initializing...");
 
@@ -58,6 +69,11 @@ public class IHubTraceContext {
 		Logger.info("The IHub core context has been initialized");
 	}
 
+	/**
+	 * 获取跟踪器
+	 *
+	 * @return 跟踪器
+	 */
 	public static Tracer tracer() {
 		if (TracerInst == null) {
 			synchronized (IHubTraceContext.class) {
@@ -68,6 +84,11 @@ public class IHubTraceContext {
 		return TracerInst;
 	}
 
+	/**
+	 * 获取文本传播器
+	 *
+	 * @return 文本传播器
+	 */
 	public static TextMapPropagator textPropagator() {
 		return TelemetryInst.getPropagators().getTextMapPropagator();
 	}

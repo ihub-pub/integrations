@@ -38,9 +38,21 @@ import static net.bytebuddy.matcher.ElementMatchers.*;
  */
 public class IHubTraceAgent {
 
+	/**
+	 * v1
+	 */
 	private static final String TRANSFORMER_V_1 = "v1";
+	/**
+	 * v2
+	 */
 	private static final String TRANSFORMER_V_2 = "v2";
 
+	/**
+	 * The premain method to load the ihub agent
+	 *
+	 * @param agentArgs the agent arguments
+	 * @param inst      the instrumentation instance
+	 */
 	public static void premain(String agentArgs, Instrumentation inst) {
 		Logger.info("The ihub agent start to load...");
 

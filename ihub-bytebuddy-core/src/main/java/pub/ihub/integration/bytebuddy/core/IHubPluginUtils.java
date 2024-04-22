@@ -16,6 +16,7 @@
 package pub.ihub.integration.bytebuddy.core;
 
 import lombok.SneakyThrows;
+import net.bytebuddy.build.Plugin;
 import net.bytebuddy.description.annotation.AnnotationDescription;
 import net.bytebuddy.description.annotation.AnnotationList;
 import net.bytebuddy.description.field.FieldDescription;
@@ -48,7 +49,9 @@ import static java.nio.file.Files.readString;
 public final class IHubPluginUtils {
 
 	static {
-		Logger.ENABLE_DEBUG = Boolean.valueOf(getEnableDebug());
+		if (Boolean.parseBoolean(getEnableDebug())) {
+			Logger.setLevel(Logger.Level.DEBUG);
+		}
 	}
 
 	/**
@@ -114,10 +117,8 @@ public final class IHubPluginUtils {
 	/**
 	 * Applies the given map of source type or annotation to annotation onto the given {@link DynamicType.Builder}.
 	 *
-	 * @param builder  the current {@link DynamicType.Builder}.
-	 * @param type     the currently described type.
-	 * @param mappings the annotation or type mappings.
-	 * @param log      the log to write to.
+	 * @param source     the source type or annotation to match.
+	 * @param annotation the annotation to apply.
 	 * @return type builder
 	 */
 	public static ElementMatcher<FieldDescription> defaultMapping(ElementMatcher.Junction<FieldDescription> source,
@@ -138,10 +139,8 @@ public final class IHubPluginUtils {
 	/**
 	 * Applies the given map of source type or annotation to annotation onto the given {@link DynamicType.Builder}.
 	 *
-	 * @param builder  the current {@link DynamicType.Builder}.
-	 * @param type     the currently described type.
-	 * @param mappings the annotation or type mappings.
-	 * @param log      the log to write to.
+	 * @param source     the source type or annotation to match.
+	 * @param annotation the annotation to apply.
 	 * @return type builder
 	 */
 	public static ElementMatcher<MethodDescription> defaultMethodMapping(ElementMatcher.Junction<MethodDescription> source,
@@ -221,14 +220,14 @@ public final class IHubPluginUtils {
 	 * @param type the currently described type.
 	 * @return type builder
 	 */
-	public static String abbreviate(String fullyQualifiedTypeName) {
+	public static String abbreviate(String type) {
 
-		String abbreviatedPackage = Arrays.stream(getPackageName(fullyQualifiedTypeName)
+		String abbreviatedPackage = Arrays.stream(getPackageName(type)
 				.split("\\."))
 			.map(it -> it.substring(0, 1))
 			.collect(Collectors.joining("."));
 
-		return abbreviatedPackage.concat(getShortName(fullyQualifiedTypeName));
+		return abbreviatedPackage.concat(getShortName(type));
 	}
 
 	/**

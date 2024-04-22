@@ -28,6 +28,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.SOURCE)
 public @interface AspectDefinition {
 
+	/**
+	 * 默认方法名
+	 */
 	String ENHANCE_METHOD = "invoke";
 
 	/**
