@@ -21,8 +21,6 @@ plugins {
     alias(ihub.plugins.test) apply false
     alias(ihub.plugins.verification) apply false
     alias(ihub.plugins.publish) apply false
-    id("pub.ihub.plugin.ihub-boot") apply false
-//    id("net.bytebuddy.byte-buddy-gradle-plugin") version "1.14.11"
 }
 
 subprojects {
@@ -38,11 +36,6 @@ subprojects {
         if (project.name != "ihub-core") {
             "api"(project(":ihub-core"))
         }
-    }
-
-    // TODO 插件配置doc编码
-    tasks.withType(Javadoc::class.java) {
-        options.encoding = "UTF-8"
     }
 }
 
