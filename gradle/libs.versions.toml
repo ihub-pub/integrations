@@ -7,6 +7,6 @@ compile-testing = { module = 'com.google.testing.compile:compile-testing', versi
 incap = { module = 'net.ltgt.gradle.incap:incap', version.ref = 'incap' }
 incap-processor = { module = 'net.ltgt.gradle.incap:incap-processor', version.ref = 'incap' }
 javapoet = { module = 'com.squareup:javapoet', version = '1.13.0' }
-qdox = { module = 'com.thoughtworks.qdox:qdox', version = '2.1.0' }
+qdox = { module = 'com.thoughtworks.qdox:qdox', version = '2.2.0' }
 
 [bundles]
