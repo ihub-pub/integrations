@@ -18,5 +18,5 @@ description = "IHub字节码增强核心组件"
 dependencies {
     implementation("net.bytebuddy:byte-buddy")
     implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("cn.hutool:hutool-all")
+    implementation("cn.hutool:hutool-core")
 }
