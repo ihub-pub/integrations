@@ -25,8 +25,8 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api")
     implementation("io.swagger.core.v3:swagger-core-jakarta")
     implementation("org.springframework:spring-web")
-    implementation("cn.hutool:hutool-all")
-    implementation("com.thoughtworks.qdox:qdox:2.1.0")
+    implementation("cn.hutool:hutool-core")
+    implementation(libs.qdox)
 
     testImplementation("org.assertj:assertj-core")
 }
