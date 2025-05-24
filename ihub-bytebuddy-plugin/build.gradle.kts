@@ -23,7 +23,7 @@ dependencies {
     implementation("org.jmolecules:jmolecules-ddd")
 //    implementation("org.jmolecules:jmolecules-events")
     implementation("jakarta.persistence:jakarta.persistence-api")
-    implementation("io.swagger.core.v3:swagger-core-jakarta")
+    implementation("io.swagger.core.v3:swagger-core-jakarta:2.2.32")
     implementation("org.springframework:spring-web")
     implementation("cn.hutool:hutool-core")
     implementation(libs.qdox)
