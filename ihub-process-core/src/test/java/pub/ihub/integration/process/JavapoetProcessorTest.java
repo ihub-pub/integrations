@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.testing.compile.CompilationSubject.assertThat;
-import static javax.lang.model.SourceVersion.RELEASE_17;
+import static javax.lang.model.SourceVersion.RELEASE_21;
 import static javax.tools.StandardLocation.CLASS_OUTPUT;
 
 /**
@@ -65,7 +65,7 @@ class JavapoetProcessorTest {
 		assertThat(compilation).succeededWithoutWarnings();
 	}
 
-	@SupportedSourceVersion(RELEASE_17)
+	@SupportedSourceVersion(RELEASE_21)
 	@SupportedAnnotationTypes("java.lang.Deprecated")
 	static class DemoJavapoetProcessor extends BaseJavapoetProcessor {
 
