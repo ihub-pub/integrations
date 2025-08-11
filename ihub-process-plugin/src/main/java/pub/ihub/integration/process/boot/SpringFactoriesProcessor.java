@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
 
-import static javax.lang.model.SourceVersion.RELEASE_17;
+import static javax.lang.model.SourceVersion.RELEASE_21;
 import static javax.tools.StandardLocation.CLASS_OUTPUT;
 import static javax.tools.StandardLocation.SOURCE_OUTPUT;
 
@@ -40,7 +40,7 @@ import static javax.tools.StandardLocation.SOURCE_OUTPUT;
  * @author henry
  */
 @AutoService(Processor.class)
-@SupportedSourceVersion(RELEASE_17)
+@SupportedSourceVersion(RELEASE_21)
 @SupportedAnnotationTypes({SpringFactoriesProcessor.AUTO_CONFIG_POST_PROCESSOR_ANNOTATION})
 @IncrementalAnnotationProcessor(IncrementalAnnotationProcessorType.AGGREGATING)
 public class SpringFactoriesProcessor extends BaseJavapoetProcessor {

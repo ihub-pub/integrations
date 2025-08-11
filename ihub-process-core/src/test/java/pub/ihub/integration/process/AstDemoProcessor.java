@@ -21,12 +21,12 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.Element;
 
-import static javax.lang.model.SourceVersion.RELEASE_17;
+import static javax.lang.model.SourceVersion.RELEASE_21;
 
 /**
  * @author liheng
  */
-@SupportedSourceVersion(RELEASE_17)
+@SupportedSourceVersion(RELEASE_21)
 @SupportedAnnotationTypes("java.lang.Deprecated")
 public class AstDemoProcessor extends BaseAstProcessor {
 
