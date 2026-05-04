@@ -45,8 +45,8 @@ IHub 三层架构中的 **动态适配层**，提供两类核心能力：
 | 模块 | 定位 |
 |------|------|
 | `ihub-migrate-core` | 迁移分析引擎：规则接口、项目上下文、AI 可读报告 |
-| `ihub-migrate-rewrite` | OpenRewrite 集成：Spring Boot 3.x 迁移 Recipe（计划中） |
-| `ihub-migrate-analyzer` | 依赖图分析：与 libs catalog 联动，识别过时依赖（计划中） |
+| `ihub-migrate-rewrite` | OpenRewrite 集成：Spring Boot 3.x 迁移 Recipe |
+| `ihub-migrate-analyzer` | 依赖图分析：与 libs catalog 联动，识别过时依赖 |
 
 ### ⚡ 运行时字节码增强
 
