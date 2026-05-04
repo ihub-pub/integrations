@@ -34,7 +34,33 @@
     </a>
 </p>
 
-集成模块组件库
+## IHub 动态适配层（L2 Capability Board）
+
+IHub 三层架构中的 **动态适配层**，提供两类核心能力：
+
+### 🔄 旧系统迁移工具（P2 新增）
+
+帮助存量 Java 系统完成技术现代化升级，核心理念：**丝滑迁移，而非推倒重来**。
+
+| 模块 | 定位 |
+|------|------|
+| `ihub-migrate-core` | 迁移分析引擎：规则接口、项目上下文、AI 可读报告 |
+| `ihub-migrate-rewrite` | OpenRewrite 集成：Spring Boot 3.x 迁移 Recipe（计划中） |
+| `ihub-migrate-analyzer` | 依赖图分析：与 libs catalog 联动，识别过时依赖（计划中） |
+
+### ⚡ 运行时字节码增强
+
+基于 ByteBuddy 的 Java Agent，无侵入地为旧系统添加链路追踪、方法拦截等能力。
+
+| 模块 | 定位 |
+|------|------|
+| `ihub-agent-core` | Java Agent 基础设施 |
+| `ihub-agent-trace-plugin` | 链路追踪增强（OpenTelemetry） |
+| `ihub-bytebuddy-core` | ByteBuddy DSL 封装 |
+| `ihub-bytebuddy-plugin` | IHub 特定增强插件 |
+| `ihub-process-core` | 注解处理器（APT）基础设施 |
+
+> 详细设计：[P2 战略重定向文档](https://github.com/ihub-pub/ihub/blob/main/docs/strategy/2026-05-04-ihub-integrations-p2-design.md)
 
 ## 🧭 开源贡献指南
 
