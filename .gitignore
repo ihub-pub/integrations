@@ -2,6 +2,7 @@
 .gitee
 logs
 pom.xml
+!demo/legacy-app/pom.xml
 pom.xml.asc
 lombok.config
 
