@@ -55,6 +55,25 @@ public final class RecipeAdapter {
     }
 
     /**
+     * 构建 IHub Spring Boot 4.x 迁移 Recipe 名称列表。
+     *
+     * <p>包含：
+     * <ul>
+     *   <li>Spring Boot 3.x → 4.x 版本升级（需较新 rewrite-spring；
+     *       锁定版本 5.25.0 最高含 3.3，先以 3.3 为安全基线）</li>
+     *   <li>Spring Framework 7 属性/注解清理（随 4.0 Recipe 附带）</li>
+     * </ul>
+     *
+     * @return Recipe 名称列表（供 OpenRewrite 执行）
+     */
+    public static List<String> springBoot4MigrationRecipes() {
+        return List.of(
+            "org.openrewrite.java.spring.boot4.UpgradeSpringBoot_4_0",
+            "org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_3"
+        );
+    }
+
+    /**
      * 构建 Gradle Kotlin DSL 迁移 Recipe 名称列表。
      *
      * @return Recipe 名称列表
@@ -72,6 +91,9 @@ public final class RecipeAdapter {
      * @return 对应的 Recipe 名称列表；若无映射则返回空列表
      */
     public static List<String> toRecipeNames(MigrationRule rule) {
+        if ("spring-boot-3-to-4".equals(rule.id())) {
+            return springBoot4MigrationRecipes();
+        }
         return switch (rule.category()) {
             case DEPENDENCY, CODE_PATTERN -> springBoot3MigrationRecipes();
             case BUILD -> gradleKotlinDslRecipes();
