@@ -18,15 +18,11 @@ package pub.ihub.integration.process;
 import pub.ihub.integration.process.core.BaseAstProcessor;
 
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.Element;
-
-import static javax.lang.model.SourceVersion.RELEASE_21;
 
 /**
  * @author liheng
  */
-@SupportedSourceVersion(RELEASE_21)
 @SupportedAnnotationTypes("java.lang.Deprecated")
 public class AstErrorProcessor extends BaseAstProcessor {
 

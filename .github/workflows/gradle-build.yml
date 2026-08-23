@@ -42,10 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # JDK 25 暂不纳入：ihub-process 注解处理器 @SupportedSourceVersion(RELEASE_21)
-        # 在更高版本 JDK 上触发 "受支持版本低于 -source" 警告，
-        # compile-testing 断言 0 警告导致测试失败（待处理器升级 latestSupported）。
-        java_version: [ 17, 21 ]
+        # 处理器已改用 getSupportedSourceVersion() -> latestSupported()，
+        # JDK 17 编译与 JDK 25 compile-testing 0 警告断言均不再受阻。
+        java_version: [ 17, 21, 25 ]
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
