@@ -29,12 +29,9 @@ import pub.ihub.integration.annotation.AutoConfigPostProcessor;
 
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import java.io.IOException;
-
-import static javax.lang.model.SourceVersion.RELEASE_21;
 
 /**
  * 配置环境处理器
@@ -42,7 +39,6 @@ import static javax.lang.model.SourceVersion.RELEASE_21;
  * @author henry
  */
 @AutoService(Processor.class)
-@SupportedSourceVersion(RELEASE_21)
 @SupportedAnnotationTypes("org.springframework.boot.context.properties.ConfigurationProperties")
 @IncrementalAnnotationProcessor(IncrementalAnnotationProcessorType.AGGREGATING)
 public class ConfigEnvironmentProcessor extends BaseJavapoetProcessor {
