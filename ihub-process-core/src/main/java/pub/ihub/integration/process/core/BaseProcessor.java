@@ -22,6 +22,7 @@ import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
@@ -52,6 +53,17 @@ public abstract class BaseProcessor extends AbstractProcessor {
 	protected abstract void processElement(Element element) throws IOException;
 
 	protected void processingOver() throws IOException {
+	}
+
+	/**
+	 * 支持当前 JDK 的最新源码版本（替代固定 @SupportedSourceVersion，
+	 * 避免在低版本 JDK 上编译失败、高版本 JDK 上触发"受支持版本过低"警告）
+	 *
+	 * @return 最新支持的源码版本
+	 */
+	@Override
+	public SourceVersion getSupportedSourceVersion() {
+		return SourceVersion.latestSupported();
 	}
 
 	@Override

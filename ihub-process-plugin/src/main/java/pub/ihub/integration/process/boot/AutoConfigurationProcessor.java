@@ -23,7 +23,6 @@ import pub.ihub.integration.process.core.BaseJavapoetProcessor;
 
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.Element;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,7 +31,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static javax.lang.model.SourceVersion.RELEASE_21;
 import static javax.tools.StandardLocation.CLASS_OUTPUT;
 import static javax.tools.StandardLocation.SOURCE_OUTPUT;
 
@@ -42,7 +40,6 @@ import static javax.tools.StandardLocation.SOURCE_OUTPUT;
  * @author henry
  */
 @AutoService(Processor.class)
-@SupportedSourceVersion(RELEASE_21)
 @SupportedAnnotationTypes("org.springframework.boot.autoconfigure.AutoConfiguration")
 @IncrementalAnnotationProcessor(IncrementalAnnotationProcessorType.AGGREGATING)
 public class AutoConfigurationProcessor extends BaseJavapoetProcessor {

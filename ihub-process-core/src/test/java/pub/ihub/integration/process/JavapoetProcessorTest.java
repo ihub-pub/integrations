@@ -23,14 +23,12 @@ import org.junit.jupiter.api.Test;
 import pub.ihub.integration.process.core.BaseJavapoetProcessor;
 
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.google.testing.compile.CompilationSubject.assertThat;
-import static javax.lang.model.SourceVersion.RELEASE_21;
 import static javax.tools.StandardLocation.CLASS_OUTPUT;
 
 /**
@@ -65,7 +63,6 @@ class JavapoetProcessorTest {
 		assertThat(compilation).succeededWithoutWarnings();
 	}
 
-	@SupportedSourceVersion(RELEASE_21)
 	@SupportedAnnotationTypes("java.lang.Deprecated")
 	static class DemoJavapoetProcessor extends BaseJavapoetProcessor {
 
