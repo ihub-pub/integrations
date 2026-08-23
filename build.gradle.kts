@@ -13,8 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.gradle.api.plugins.JavaPluginExtension
-
 plugins {
     alias(ihub.plugins.root)
     alias(ihub.plugins.copyright)
@@ -32,14 +30,6 @@ subprojects {
         plugin("pub.ihub.plugin.ihub-test")
         plugin("pub.ihub.plugin.ihub-verification")
         plugin("pub.ihub.plugin.ihub-publish")
-    }
-
-    // 字节码基线固定为 Java 17，与 libs 等消费方（含 Java 17 CI）保持一致。
-    // 0.2.4 在 JDK 21 环境发布时默认编译为 Java 21 基线（org.gradle.jvm.version=21），
-    // 导致 Java 17 消费方依赖解析失败（libs CI: JVM runtime 17 vs ihub-core:0.2.4 需 21+）。
-    extensions.configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 
     dependencies {

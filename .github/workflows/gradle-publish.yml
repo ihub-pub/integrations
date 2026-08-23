@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java_version: [ 21 ]
+        # 按最低支持版本发布（与 libs 等消费方 Java 17 基线一致），
+        # ihub-java 默认按发布 JDK 编译，产物 org.gradle.jvm.version=17。
+        # 历史：0.1.12 为 17；0.2.4 误用 21 导致 Java 17 消费方解析失败。
+        java_version: [ 17 ]
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0

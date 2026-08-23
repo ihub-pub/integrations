@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java_version: [ 17, 21, 25 ]
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
@@ -20,10 +23,10 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Set up JDK 21
+      - name: Set up JDK ${{ matrix.java_version }}
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
-          java-version: '21'
+          java-version: ${{ matrix.java_version }}
           distribution: 'adopt'
           cache: 'gradle'
 
@@ -37,6 +40,12 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # JDK 25 暂不纳入：ihub-process 注解处理器 @SupportedSourceVersion(RELEASE_21)
+        # 在更高版本 JDK 上触发 "受支持版本低于 -source" 警告，
+        # compile-testing 断言 0 警告导致测试失败（待处理器升级 latestSupported）。
+        java_version: [ 17, 21 ]
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@05e31511f85b41b11d1cf0ef85d0992719546e2c # v2.21.0
@@ -46,10 +55,10 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Set up JDK 21
+      - name: Set up JDK ${{ matrix.java_version }}
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
-          java-version: '21'
+          java-version: ${{ matrix.java_version }}
           distribution: 'adopt'
           cache: 'gradle'
 
