@@ -217,4 +217,31 @@ class MigrateRewriteTest {
         assertEquals(MigrationRule.RuleCategory.DEPENDENCY, rule.category());
         assertNotNull(rule.description());
     }
+
+    @Test
+    void boot4RuleNoSpringBootDepsReturnsNoIssues() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        // 无 spring-boot 依赖 → findSpringBootVersion 返回 null → 不报 issue
+        ProjectContext ctx = new ProjectContext("plain-java", "/project", "maven", "17",
+            Map.of("org.apache.commons:commons-lang3", "3.14.0"), Map.of());
+        assertFalse(rule.analyze(ctx).hasIssues());
+    }
+
+    @Test
+    void boot4RuleEmptyDependenciesReturnsNoIssues() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        // 空依赖 map → 循环零次 → 返回 null → 不报 issue
+        ProjectContext ctx = new ProjectContext("empty", "/project", "maven", "17",
+            Map.of(), Map.of());
+        assertFalse(rule.analyze(ctx).hasIssues());
+    }
+
+    @Test
+    void boot4RuleNullDependenciesReturnsNoIssues() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        // null dependencies → dependencies == null 短路 → 不报 issue
+        ProjectContext ctx = new ProjectContext("null-deps", "/project", "maven", "17",
+            null, Map.of());
+        assertFalse(rule.analyze(ctx).hasIssues());
+    }
 }
