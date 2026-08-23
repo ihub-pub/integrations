@@ -173,4 +173,48 @@ class MigrateRewriteTest {
         assertEquals(MigrationRule.RuleCategory.BUILD, rule.category());
         assertNotNull(rule.description());
     }
+
+    // ---- SpringBoot4MigrationRule ----
+
+    @Test
+    void springBoot4RecipesNotEmpty() {
+        List<String> recipes = RecipeAdapter.springBoot4MigrationRecipes();
+        assertFalse(recipes.isEmpty());
+        assertTrue(recipes.stream().anyMatch(r -> r.contains("SpringBoot")));
+    }
+
+    @Test
+    void toRecipeNamesForBoot4Rule() {
+        MigrationRule rule = new SpringBoot4MigrationRule();
+        List<String> names = RecipeAdapter.toRecipeNames(rule);
+        assertTrue(names.contains("org.openrewrite.java.spring.boot4.UpgradeSpringBoot_4_0"));
+    }
+
+    @Test
+    void boot3ProjectDetectedByBoot4Rule() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        ProjectContext ctx = new ProjectContext("legacy-app", "/project", "maven", "17",
+            Map.of("org.springframework.boot:spring-boot-starter-web", "3.3.5"), Map.of());
+
+        AnalysisResult result = rule.analyze(ctx);
+        assertTrue(result.hasIssues());
+        assertTrue(result.issues().get(0).description().contains("3.3.5"));
+        assertFalse(result.suggestions().isEmpty());
+    }
+
+    @Test
+    void boot2ProjectNotFlaggedByBoot4Rule() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        ProjectContext ctx = new ProjectContext("old-app", "/project", "maven", "8",
+            Map.of("org.springframework.boot:spring-boot-starter", "2.7.18"), Map.of());
+        assertFalse(rule.analyze(ctx).hasIssues());
+    }
+
+    @Test
+    void springBoot4RuleMetadata() {
+        SpringBoot4MigrationRule rule = new SpringBoot4MigrationRule();
+        assertEquals("spring-boot-3-to-4", rule.id());
+        assertEquals(MigrationRule.RuleCategory.DEPENDENCY, rule.category());
+        assertNotNull(rule.description());
+    }
 }
