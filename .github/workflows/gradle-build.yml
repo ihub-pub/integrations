@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           java-version: ${{ matrix.java_version }}
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: 'gradle'
 
       - name: Chmod
@@ -42,8 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # 处理器已改用 getSupportedSourceVersion() -> latestSupported()，
-        # JDK 17 编译与 JDK 25 compile-testing 0 警告断言均不再受阻。
+        # 处理器已改用 getSupportedSourceVersion() -> latestSupported()�?
+        # JDK 17 编译�?JDK 25 compile-testing 0 警告断言均不再受阻�?
         java_version: [ 17, 21, 25 ]
     steps:
       - name: Harden Runner
@@ -58,7 +58,7 @@ jobs:
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           java-version: ${{ matrix.java_version }}
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: 'gradle'
 
       - name: Testspace Setup CLI
