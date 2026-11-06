@@ -42,8 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # 处理器已改用 getSupportedSourceVersion() -> latestSupported()�?
-        # JDK 17 编译�?JDK 25 compile-testing 0 警告断言均不再受阻�?
+        # Processors use latestSupported() for the supported source version.
+        # Test compilation on all supported JDK versions.
         java_version: [ 17, 21, 25 ]
     steps:
       - name: Harden Runner
